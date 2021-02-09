@@ -27,10 +27,19 @@ defmodule Naive.MixProject do
   defp deps do
     [
       {:binance, "~> 0.7.1"},
+      {:binance_mock, in_umbrella: true},
       {:decimal, "~> 2.0"},
+      {:ecto_sql, "~> 3.0"},
+      {:ecto_enum, "~> 1.4"},
       {:phoenix_pubsub, "~> 2.0"},
+      {:postgrex, ">= 0.0.0"},
       {:streamer, in_umbrella: true},
-      {:binance_mock, in_umbrella: true}
+
+      {:mix_test_watch, "~> 1.0.2", only: [:dev, :test], runtime: false},
+      {:ex_unit_notifier, "~> 1.0.0", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.5.0-rc.5", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0.0-rc.7", only: [:dev, :test], runtime: false},
+      {:sobelow, "~> 0.11.0", only: [:dev, :test], runtime: false}
     ]
   end
 end

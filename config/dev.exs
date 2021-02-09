@@ -1,5 +1,8 @@
 import Config
 
+config :logger,
+  level: :info
+
 config :mix_test_watch,
   clear: true,
   tasks: [

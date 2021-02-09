@@ -9,19 +9,28 @@
 # move said applications out of the umbrella.
 import Config
 
-# Sample configuration:
-#
-#     config :logger, :console,
-#       level: :info,
-#       format: "$date $time [$level] $metadata$message\n",
-#       metadata: [:user_id]
-#
-
 config :logger,
   level: :info
 
+config :naive, Naive.Repo, url: "postgres://postgres:postgres@127.0.0.1:5433/naive"
+
 config :naive,
-  binance_client: BinanceMock
+  ecto_repos: [Naive.Repo],
+  binance_client: BinanceMock,
+  trading: %{
+    defaults: %{
+      chunks: 5,
+      budget: 100.0,
+      buy_down_interval: 0.0001,
+      profit_interval: -0.0012,
+      rebuy_interval: 0.001
+    }
+  }
+
+config :streamer, Streamer.Repo, url: "postgres://postgres:postgres@127.0.0.1:5433/streamer"
+
+config :streamer,
+  ecto_repos: [Streamer.Repo]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
